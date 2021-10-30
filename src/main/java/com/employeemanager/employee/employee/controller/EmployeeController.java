@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +32,30 @@ public class EmployeeController {
         return "index";
     }
 
+    @GetMapping("/list/add")
+    public String addEmployee(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "new_employee";
+    }
+
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute Employee employee){
+        employeeService.save(employee);
+        return "redirect:/list";
+    }
+
+    @GetMapping("/list/update/{theId}")
+    public String updateEmployee(@PathVariable(value = "theId") int theId, Model model) {
+        Employee employee = employeeService.findById(theId);
+        model.addAttribute("employee", employee);
+        return "update_employee";
+    }
+
+    @GetMapping("list/delete/{theId}")
+    public String deleteEmployee(@PathVariable(value = "theId") int theId) {
+        employeeService.deleteById(theId);
+        return "redirect:/list";
+    }
 
 }

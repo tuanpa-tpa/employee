@@ -8,3 +8,12 @@ CREATE TABLE `employee`
     country VARCHAR(100),
     PRIMARY KEY (id)
 );
+
+INSERT INTO `employee`.employee(name, email, country)
+VALUES ('tuan', 'tuanpa.tpa@gmail.com','VietNam');
+
+INSERT INTO `employee`.employee(name, email, country)
+VALUES ('dung', 'tuantpa2@gmail.com','VietNam');
+
+INSERT INTO `employee`.employee(name, email, country)
+VALUES ('tuanmeo', 'helloptit@gmail.com','VietNam');
